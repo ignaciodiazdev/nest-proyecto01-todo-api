@@ -13,13 +13,14 @@ export class TasksService {
     @InjectRepository(Task)
     private readonly taskRepository: Repository<Task>,
   ){}
+
   async create(createTaskDto: CreateTaskDto) {
     const instanceTask   = this.taskRepository.create(createTaskDto);
     const newTask        = await this.taskRepository.save(instanceTask);
     return newTask;
   }
 
-  async findAll(filterTaskDto: FilterTaskDto) {
+  async findAll(filterTaskDto?: FilterTaskDto) {
     // let condition: FindManyOptions<Task> = {};
     const query = this.taskRepository.createQueryBuilder('task');
 
@@ -36,7 +37,7 @@ export class TasksService {
 
   async findOne(id: string) {
     const task = await this.taskRepository.findOneBy({id});
-    if(!task) throw new NotFoundException(`User not found with id: ${id}`)
+    if(!task) throw new NotFoundException(`Task not found with id: ${id}`)
     return task;
   }
 
@@ -46,7 +47,7 @@ export class TasksService {
       ...updateTaskDto
     });
 
-    if(!task) throw new NotFoundException(`User not found with id: ${id}`);
+    if(!task) throw new NotFoundException(`Task not found with id: ${id}`);
 
     return await this.taskRepository.save(task);
   }
@@ -57,7 +58,7 @@ export class TasksService {
       status: Status.DONE
     });
 
-    if(!task) throw new NotFoundException(`User not found with id: ${id}`);
+    if(!task) throw new NotFoundException(`Task not found with id: ${id}`);
 
     return await this.taskRepository.save(task);
   }
@@ -66,8 +67,8 @@ export class TasksService {
     const result = await this.taskRepository.delete(id);
 
     if(result.affected === 0){
-      throw new NotFoundException(`User not deleted because user with id: ${id} not found`);
+      throw new NotFoundException(`Task not deleted, ${id} not found`);
     }
-    return {message: 'User deleted'};
+    return {message: 'Task deleted'};
   }
 }

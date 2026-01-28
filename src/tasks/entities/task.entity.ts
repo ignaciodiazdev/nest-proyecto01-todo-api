@@ -2,6 +2,8 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeor
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { Status } from "../enums/status.enum";
 
+const isTest = process.env.NODE_ENV === 'test';
+
 @Entity('tasks')
 export class Task {
   @ApiProperty({ 
@@ -32,7 +34,11 @@ export class Task {
     enum        : Status,
     default     : Status.PENDING,
   })  
-  @Column('enum', {enum: Status, default: Status.PENDING})
+  @Column({
+    type: isTest ? 'varchar' : 'enum',
+    enum: isTest ? undefined : Status,
+    default: Status.PENDING,
+  })
   status: Status;
 
   @ApiProperty({

@@ -1,6 +1,6 @@
 import { applyDecorators } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation } from '@nestjs/swagger';
-import { Task } from 'src/tasks/entities/task.entity';
+import { Task } from '../../../../src/tasks/entities/task.entity';
 
 export function ApiFindAllTasks() {
   return applyDecorators(
