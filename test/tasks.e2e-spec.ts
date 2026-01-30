@@ -72,6 +72,7 @@ describe('Task (e2e)', () => {
     });
   });
 
+  // TODO: Hacer el caso donde falle (como se hizo en el test POST)
   describe('GET /tasks/:id', () => {
     it('return a task', async () => {
       const task = await request(app.getHttpServer())
