@@ -5,6 +5,8 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
+[![Backend Tests](https://github.com/ignaciodiazdev/nest-proyecto01-todo-api/actions/workflows/main.yml/badge.svg)](https://github.com/ignaciodiazdev/nest-proyecto01-todo-api/actions/workflows/main.yml)
+
 # 🧩 Proyecto 01 - ToDo API (NestJS)
 
 API REST desarrollada con **NestJS** y **TypeORM** para la gestión de tareas (*ToDos*).  
