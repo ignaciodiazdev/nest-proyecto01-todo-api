@@ -51,7 +51,7 @@ describe('Task (e2e)', () => {
       const response = await request(app.getHttpServer())
         .post('/tasks')
         .send({})
-        .expect(401);
+        .expect(400);
       
       expect(response.body.message).toEqual(
         expect.arrayContaining([
